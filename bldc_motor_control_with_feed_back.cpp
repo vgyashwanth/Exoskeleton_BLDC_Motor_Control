@@ -83,7 +83,7 @@ void loop() {
                 
         }
        
-
+              stop_motor(); // when we come out from the loop
 }
 ///////////////MAIN FUNCTION END////////////
 void preTransmission(void)            
@@ -216,14 +216,14 @@ void home_position(bool angle_180_360){
               
               
               }
-          
+          else{
   
            anti_clock_wise_with_pwm(pwm_input, 0);
            stop_motor(); 
            Serial.println("Home position reached sucessfully in anti clockwise direction");
            return ;
   
-    
+          }
   }
 
   
