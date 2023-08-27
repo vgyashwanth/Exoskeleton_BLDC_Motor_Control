@@ -64,6 +64,7 @@ void loop() {
         //After reaching home position
          mpu_position = mpu_angle();
          mpu_0_180 = ((mpu_position > 0) && (mpu_position <180) );
+        //MAIN CONTROL ALGORITHM WILL START FROM HERE
         while(device_status && mpu_0_180){
           if(!device_status) // coming out from the loop
                 break;
