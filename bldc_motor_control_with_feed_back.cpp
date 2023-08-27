@@ -37,7 +37,7 @@ void setup() {
     digitalWrite(3,0);
     digitalWrite(2,0);
     Serial.begin(9600);            
-    slave1.begin(1,Serial);           
+    slave1.begin(1,Serial);           //In this case our slave ID = 1
     slave1.preTransmission(preTransmission);        
     slave1.postTransmission(postTransmission);
   
