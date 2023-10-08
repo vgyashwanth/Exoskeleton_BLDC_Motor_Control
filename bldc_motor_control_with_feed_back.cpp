@@ -13,7 +13,7 @@ double x;
 double y;
 double z;
 //MPU SETUP END
-unsigned int pwm_input = 400;
+unsigned int pwm_input = 400; // for controlling the speed
 bool device_status = 0;
 void preTransmission(void); // used for setting the modbus communication           
 void postTransmission(void);// used for setting the modbus communication
@@ -55,7 +55,7 @@ void loop() {
           Serial.println("Device entered into resetting state");
           home_position(mpu_180_360);
           }
-           else{
+           else{ // for indicating the angle when the device is off
          float cur_deg = mpu_angle();
         Serial.print("Current position of the shaft: ");
         Serial.println(cur_deg);
@@ -66,16 +66,16 @@ void loop() {
          mpu_0_180 = ((mpu_position > 0) && (mpu_position <180) );
         //MAIN CONTROL ALGORITHM WILL START FROM HERE
         while(device_status && mpu_0_180){
-          if(!device_status) // coming out from the loop
+          if(!device_status) // coming out from the loop when the device is suddenly off
                 break;
         clock_wise_with_pwm(pwm_input,90);
               device_status = digitalRead(4);
-               if(!device_status) // coming out from the loop
+               if(!device_status) // coming out from the loop when the device is suddenly off
                 break;
            stop_motor();
         anti_clock_wise_with_pwm(pwm_input, 0);
               device_status = digitalRead(4);
-               if(!device_status) // coming out from the loop
+               if(!device_status) // coming out from the loop when the device is suddenly off
                 break;
            stop_motor();
            device_status = digitalRead(4);
