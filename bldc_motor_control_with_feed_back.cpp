@@ -175,7 +175,7 @@ void anti_clock_wise_with_pwm(unsigned int pwm, float degree_to_rotate){
   }  
 void stop_motor(void){
              Serial.println("enter into stop_mode");
-            slave1.writeSingleRegister(2,0x0203);  // used for  selecting the direction                           
+            slave1.writeSingleRegister(2,0x0203);  // for stopping the motor                         
             slave1.writeSingleRegister(0,0x01FF);  // used to save parameter in eeporm
   
   
